@@ -24,7 +24,7 @@ function UserView({onDelete, users}) {
 
 
   return (
-    <Table dataSource={users} columns={columns} />
+    <Table dataSource={users} columns={columns} rowKey={record=>record.id}/>
   );
 }
 
