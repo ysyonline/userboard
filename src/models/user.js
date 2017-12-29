@@ -1,3 +1,6 @@
+import * as userService from '../services/userService';
+
+const queryString = require('query-string');
 
 export default {
   namespace: 'user',
@@ -7,6 +10,11 @@ export default {
   	}
   },
   reducers: {
+  	save(state, {payload: {users} }){
+  		return Object.assign({}, state, {
+  			users
+  		});
+  	},
   	'delete'(state, {payload: {id} }){
   		return Object.assign({}, state, {
   			users: state.users.filter(item=>item.id !== id)
@@ -15,7 +23,12 @@ export default {
   },
   effects: {
   	*fetch({page = 1},{call, put}){
-  		console.log(page);
+  		console.log(userService);
+
+  		const {data:{users}} = yield call(userService.query, {page} );
+  		console.log(users);
+  		yield put({type:'save', payload: {users} });
+
   	}
 
   },
@@ -23,7 +36,7 @@ export default {
   	setup({dispatch, history }){
   		history.listen(location=>{
   			if(location.pathname === '/user'){
-  				dispatch({type:'fetch', payload:{page: 1} });
+  				dispatch({type:'fetch', payload: queryString.parse({page: 1}) });
   			}
   		});
 
