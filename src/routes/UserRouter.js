@@ -3,16 +3,21 @@ import { connect } from 'dva';
 import styles from './UserRouter.css';
 import UserView from '../components/UserView'
 
-function UserRouter() {
+function UserRouter({dispatch, users}) {
+  
+  function handleDelete (id) {
+  	dispatch({type: 'user/delete', payload: {id} })
+  }
+
   return (
     <div className={styles.normal}>
-      <UserView />
+      <UserView onDelete={handleDelete} users={users}/>
     </div>
   );
 }
 
-function mapStateToProps() {
-  return {};
+function mapStateToProps({user: {users}}) {
+  return {users};
 }
 
 export default connect(mapStateToProps)(UserRouter);

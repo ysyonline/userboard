@@ -15,7 +15,7 @@ function UserView({onDelete, users}) {
   	title: 'Actions',
   	render:(text, record)=>{
   		return (
-  			<Popconfirm title="Delete?" onConfirm={onDelete}>
+  			<Popconfirm title="Delete?" onConfirm={()=>onDelete(record.id)}>
   				<Button>Delete</Button>
   			</Popconfirm>
   		)
@@ -29,7 +29,8 @@ function UserView({onDelete, users}) {
 }
 
 UserView.propTypes = {
-
+  onDelete: PropTypes.func.isRequired,
+  users: PropTypes.array.isRequired
 };
 
 export default UserView;
