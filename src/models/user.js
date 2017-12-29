@@ -13,6 +13,20 @@ export default {
   		});
   	}
   },
-  effects: {},
-  subscriptions: {},
+  effects: {
+  	*fetch({page = 1},{call, put}){
+  		console.log(page);
+  	}
+
+  },
+  subscriptions: {
+  	setup({dispatch, history }){
+  		history.listen(location=>{
+  			if(location.pathname === '/user'){
+  				dispatch({type:'fetch', payload:{page: 1} });
+  			}
+  		});
+
+  	}
+  },
 };
