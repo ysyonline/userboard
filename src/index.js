@@ -5,7 +5,7 @@ import './index.css';
 const app = dva({
 	initialState: {
 		user: {
-			users: []
+			users: [{name:'Mr A', age: 31, id: 'a'},{name:'Mr B', age: 23, id: 'b'}]
 		}
 	}
 });
