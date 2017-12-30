@@ -4,11 +4,11 @@ import createLoading from 'dva-loading';
 
 // 1. Initialize
 const app = dva({
-	initialState: {
+	/*initialState: {
 		user: {
 			users: [{name:'Mr A', age: 31, id: 'a'},{name:'Mr B', age: 23, id: 'b'}]
 		}
-	}
+	}*/
 });
 
 // 2. Plugins

@@ -5,9 +5,7 @@ const queryString = require('query-string');
 export default {
   namespace: 'user',
   state: {
-  	user: {
   		users: []
-  	}
   },
   reducers: {
   	save(state, {payload: {users} }){
