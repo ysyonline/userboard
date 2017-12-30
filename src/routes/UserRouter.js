@@ -15,7 +15,7 @@ function UserRouter(props) {
   return (
   <MainLayout location={location}>	
     <div className={styles.normal}>
-      <UserView loading={loading} onDelete={handleDelete} users={users}/>
+      <UserView onDelete={handleDelete} {...props}/>
     </div>
    </MainLayout>
   );
@@ -24,7 +24,9 @@ function UserRouter(props) {
 function mapStateToProps(state) {
   return {
     loading: state.loading.models.user,
-    users: state.user.users
+    users: state.user.users,
+    page: state.user.page,
+    total: state.user.page
   };
 }
 

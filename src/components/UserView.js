@@ -1,10 +1,29 @@
 import React from 'react';
-import styles from './UserView.css';
-import PropTypes from 'prop-types';
-import {Table, Button, Popconfirm} from 'antd'; 
 
+import PropTypes from 'prop-types';
+import { routerRedux } from 'dva/router';
+import {Table, Pagination, Button, Popconfirm} from 'antd'; 
+import styles from './UserView.css';
+
+//import {createBrowserHistory} from 'history';
+
+//const history = createBrowserHistory();
+
+const PAGE_SIZE = 5;
 
 function UserView(props) {
+
+
+  function pageChangeHandler (page) {
+    console.log(routerRedux);
+      const action = routerRedux.push({
+        pathname: '/users',
+        search: `?page=${page}`
+      });
+      return props.dispatch(action);
+  }
+
+
   let {loading, onDelete, users} = props;
   
   const columns = [{
@@ -26,7 +45,21 @@ function UserView(props) {
 
 
   return (
-    <Table loading={loading} dataSource={users} columns={columns} rowKey={record=>record.id}/>
+    <div>
+      <Table 
+          loading={loading} 
+          dataSource={users} 
+          columns={columns} 
+          rowKey={record=>record.id}
+          pagination={false}/>
+
+      <Pagination
+          total={85}
+          showTotal={total => `Total ${total} items`}
+          current={props.page}
+          pageSize={20}
+          onChange={pageChangeHandler} />
+    </div>
   );
 }
 

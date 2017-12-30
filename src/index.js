@@ -1,12 +1,14 @@
 import dva from 'dva';
 import createLoading from 'dva-loading';
-import {createBrowserHistory} from 'history';
+import createHistory from 'history/createBrowserHistory';
 import './index.css';
 
 
 // 1. Initialize
 const app = dva({
-	history: createBrowserHistory()
+	history: createHistory({
+		basename: 'app'
+	})
 	/*initialState: {
 		user: {
 			users: [{name:'Mr A', age: 31, id: 'a'},{name:'Mr B', age: 23, id: 'b'}]

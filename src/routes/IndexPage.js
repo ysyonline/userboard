@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'dva';
 import styles from './IndexPage.css';
+import {Pagination} from 'antd'; 
 import MainLayout from '../components/MainLayout/MainLayout';
 
 function IndexPage({location}) {
@@ -14,6 +15,12 @@ function IndexPage({location}) {
         <li><a href="https://github.com/dvajs/dva-docs/blob/master/v1/en-us/getting-started.md">Getting Started</a></li>
       </ul>
     </div>
+    <Pagination
+      total={85}
+      showTotal={total => `Total ${total} items`}
+      pageSize={20}
+      defaultCurrent={1}
+    />
   </MainLayout>
   );
 }
