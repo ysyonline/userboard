@@ -4,7 +4,9 @@ import styles from './UserRouter.css';
 import UserView from '../components/UserView';
 import MainLayout from '../components/MainLayout/MainLayout';
 
-function UserRouter({location, dispatch, users}) {
+function UserRouter(props) {
+
+  let { location, dispatch, loading, users} = props;
   
   function handleDelete (id) {
   	dispatch({type: 'user/delete', payload: {id} })
@@ -13,14 +15,17 @@ function UserRouter({location, dispatch, users}) {
   return (
   <MainLayout location={location}>	
     <div className={styles.normal}>
-      <UserView onDelete={handleDelete} users={users}/>
+      <UserView loading={loading} onDelete={handleDelete} users={users}/>
     </div>
    </MainLayout>
   );
 }
 
-function mapStateToProps({user: {users}}) {
-  return {users};
+function mapStateToProps(state) {
+  return {
+    loading: state.loading.models.user,
+    users: state.user.users
+  };
 }
 
 export default connect(mapStateToProps)(UserRouter);

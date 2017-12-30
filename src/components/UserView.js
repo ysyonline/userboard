@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import {Table, Button, Popconfirm} from 'antd'; 
 
 
-function UserView({onDelete, users}) {
+function UserView(props) {
+  let {loading, onDelete, users} = props;
+  
   const columns = [{
   	title: 'Name',
   	dataIndex: 'name',
@@ -24,7 +26,7 @@ function UserView({onDelete, users}) {
 
 
   return (
-    <Table dataSource={users} columns={columns} rowKey={record=>record.id}/>
+    <Table loading={loading} dataSource={users} columns={columns} rowKey={record=>record.id}/>
   );
 }
 
