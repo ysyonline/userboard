@@ -14,19 +14,19 @@ export default {
   		const _state =  {...state, users, total, page};
       return _state;
   	},
-  	'delete'(state, {payload: {id} }){
+  	'delete'(state, {payload}){
   		return Object.assign({}, state, {
-  			users: state.users.filter(item=>item.id !== id)
+  			users: state.users.filter(item=>item.id !== payload.id)
   		});
   	}
   },
   effects: {
-  	*fetch({page},{call, put}){
+  	*fetch({data:{page}},{call, put}){
   		console.log(userService);
 
   		const {data:{users, total}} = yield call(userService.query, {page} );
   		console.log(users);
-  		yield put({type:'save', payload: {users, total, page} });
+  		yield put({type:'save', payload: {users, total, page:parseInt(page) } });
   	},
 
   },
@@ -36,7 +36,7 @@ export default {
         const {pathname, search} = location;
   			if(pathname === '/users'){
           console.log(queryString.parse(search.replace(/^[?]*(.*)$/, '$1')));
-  				dispatch({type:'fetch', payload: queryString.parse(search.replace(/^[?]*(.*)$/, '$1')) });
+  				dispatch({type:'fetch',  data:queryString.parse(search.replace(/^[?]*(.*)$/, '$1')) });
   			}
   		});
 

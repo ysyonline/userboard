@@ -13,7 +13,7 @@ function Header ({location}) {
 			theme="dark"
 		>
 			<MenuItem key="/users">
-				<Link to="/users/1234"><Icon type="bars"/>Users</Link>
+				<Link to="/users"><Icon type="bars"/>Users</Link>
 			</MenuItem>
 			<MenuItem key="/">
 				<Link to="/"><Icon type="home"/>Home</Link>
