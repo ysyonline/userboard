@@ -1,18 +1,30 @@
 import React from 'react';
 import { Router, Route, Switch } from 'dva/router';
-import IndexPage from './routes/IndexPage';
+import { registerApp, routerConfig as config} from './router.config';
 
-import UserRouter from "./routes/UserRouter.js";
+const {
 
-function RouterConfig({ history }) {
+	IndexPage,
+	UserRouter,
+
+} = config;
+
+
+function RouterConfig({ history, app }) {
+  
+  registerApp(app);
+
   return (
+
     <Router history={history}>
       <Switch>
         <Route path="/" exact component={IndexPage} />
         <Route path="/users" component={UserRouter} />
-      </Switch>
       
+        //...
+      </Switch>
     </Router>
+  	
   );
 }
 

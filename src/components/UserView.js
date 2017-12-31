@@ -5,12 +5,6 @@ import { routerRedux } from 'dva/router';
 import {Table, Pagination, Button, Popconfirm} from 'antd'; 
 import styles from './UserView.css';
 
-//import {createBrowserHistory} from 'history';
-
-//const history = createBrowserHistory();
-
-const PAGE_SIZE = 5;
-
 function UserView(props) {
 
   const {dispatch} = props;

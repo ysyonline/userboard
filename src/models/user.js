@@ -21,7 +21,7 @@ export default {
   	}
   },
   effects: {
-  	*fetch({data:{page}},{call, put}){
+  	*fetch({data:{page = 1}},{call, put}){
   		console.log(userService);
 
   		const {data:{users, total}} = yield call(userService.query, {page} );
@@ -35,7 +35,7 @@ export default {
   		history.listen(location=>{
         const {pathname, search} = location;
   			if(pathname === '/users'){
-          console.log(queryString.parse(search.replace(/^[?]*(.*)$/, '$1')));
+
   				dispatch({type:'fetch',  data:queryString.parse(search.replace(/^[?]*(.*)$/, '$1')) });
   			}
   		});

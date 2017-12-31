@@ -4,6 +4,7 @@ import styles from './IndexPage.css';
 import {Pagination} from 'antd'; 
 import MainLayout from '../components/MainLayout/MainLayout';
 
+
 function IndexPage({location}) {
   return (
   <MainLayout location={location}>
