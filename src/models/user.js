@@ -5,14 +5,13 @@ const queryString = require('query-string');
 export default {
   namespace: 'user',
   state: {
-  		users: [],
-      total: null,
-      page: null
+  	users: [],
+    total: null,
+    page: null
   },
   reducers: {
   	save(state, {payload: {users, total, page} }){
-  		const _state =  {...state, users, total, page};
-      return _state;
+  		return {...state, users, total, page};
   	},
   	'delete'(state, {payload}){
   		return Object.assign({}, state, {
@@ -22,8 +21,6 @@ export default {
   },
   effects: {
   	*fetch({data:{page = 1}},{call, put}){
-  		console.log(userService);
-
   		const {data:{users, total}} = yield call(userService.query, {page} );
   		console.log(users);
   		yield put({type:'save', payload: {users, total, page:parseInt(page) } });
@@ -39,7 +36,6 @@ export default {
   				dispatch({type:'fetch',  data:queryString.parse(search.replace(/^[?]*(.*)$/, '$1')) });
   			}
   		});
-
   	}
   },
 };

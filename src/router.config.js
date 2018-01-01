@@ -1,4 +1,4 @@
-import Bundle from './utils/Bundle';
+import Bundle from './common/Bundle';
 
 const cached = {};
 
@@ -33,7 +33,9 @@ const routerConfig = {
 		        {(UserRouter) => <UserRouter {...props}/>}
 		    </Bundle>
 		)
-	}
+	},
+
+
 
 }
 

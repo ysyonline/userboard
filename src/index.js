@@ -1,19 +1,17 @@
 import dva from 'dva';
 import createLoading from 'dva-loading';
-import createHistory from 'history/createBrowserHistory';
+import browserHistory from './utils/history';
+import { message } from 'antd';
 import './index.css';
 
+const ERROR_MSG_DURATION = 3; // 3 秒
 
 // 1. Initialize
 const app = dva({
-	history: createHistory({
-		//basename: 'app'
-	})
-	/*initialState: {
-		user: {
-			users: [{name:'Mr A', age: 31, id: 'a'},{name:'Mr B', age: 23, id: 'b'}]
-		}
-	}*/
+	history: browserHistory,
+	onError(e){
+		message.error(e.message, ERROR_MSG_DURATION);
+	}
 });
 
 // 2. Plugins

@@ -16,12 +16,6 @@ function IndexPage({location}) {
         <li><a href="https://github.com/dvajs/dva-docs/blob/master/v1/en-us/getting-started.md">Getting Started</a></li>
       </ul>
     </div>
-    <Pagination
-      total={85}
-      showTotal={total => `Total ${total} items`}
-      pageSize={20}
-      defaultCurrent={1}
-    />
   </MainLayout>
   );
 }
