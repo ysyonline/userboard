@@ -16,13 +16,21 @@ export default {
   		return Object.assign({}, state, {
   			users: state.users.filter(item=>item.id !== payload.id)
   		});
-  	}
+  	},
+    edit(){
+
+    }
   },
   effects: {
   	*fetch({data:{page = 1}},{call, put}){
   		const {data:{users, total}} = yield call(userService.query, {page} );
   		yield put({type:'save', payload: {users, total, page } });
   	},
+    *edit({payload}, {call, put, select}){
+      yield call(userService.update, payload);
+      const page = yield select((state)=>state.user.page);
+      yield put({type:'fetch', data:{page} });
+    }
 
   },
   subscriptions: {

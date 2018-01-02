@@ -19,3 +19,18 @@ export function query(condition) {
   
   return request(url, settings);
 }
+
+export function update(condition){
+
+  const {id, values} = condition;
+
+  const settings = {
+    method: 'UPDATE',
+    headers:{
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(values)
+  };
+  const url = `/api/users?id=${id}`;
+  return request(url, settings);
+}

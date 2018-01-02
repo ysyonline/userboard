@@ -31,18 +31,18 @@ function UserView(props) {
   const columns = [{
     	title: 'Name',
     	dataIndex: 'name',
-      key: 'name',
     },{
     	title: 'Age',
     	dataIndex: 'age',
-      key: 'age',
+    },{
+      title: 'Website',
+      dataIndex: 'website',
     },{
     	title: 'Actions',
-      key:'actions',
     	render:(text, record)=>{
     		return (
           <div>
-            <UserModal record={record} onOk={handleEdit.bind(null, record.id)}>
+            <UserModal record={record} onOk={(values)=>handleEdit(record.id,values) }>
               <Button>Edit</Button>
             </UserModal>
       			<Popconfirm title="Delete?" onConfirm={()=>handleDelete(record.id)}>

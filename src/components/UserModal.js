@@ -68,7 +68,7 @@ class UserModal extends Component {
             </FormItem>
             <FormItem
               {...formItemLayout}
-              label="Email"
+              label="Age"
             >
               {
                 getFieldDecorator('age', {
