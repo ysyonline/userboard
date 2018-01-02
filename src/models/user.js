@@ -19,9 +19,9 @@ export default {
   	},
   },
   effects: {
-  	*fetch({data:{page = 1}},{call, put}){
-  		const {data:{users, total}} = yield call(userService.query, {page} );
-  		yield put({type:'save', payload: {users, total, page } });
+  	*fetch({data:{current = 1}},{call, put}){
+  		const {data:{users, total}} = yield call(userService.query, {current} );
+  		yield put({type:'save', payload: {users, total, page:current } });
   	},
     *edit({payload}, {call, put}){
       yield call(userService.update, payload);

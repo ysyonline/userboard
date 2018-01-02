@@ -11,12 +11,12 @@ function UserView(props) {
 
   const {dispatch} = props;
 
-  function paginationHandler (page, pageSize) {
+  function paginationHandler (pagination) {
 
     return dispatch(routerAction({
       pathname: '/users',
-      search:{ page, pageSize },
-      query:{ page, pageSize }
+      search:pagination,
+      query:pagination
     }));
   }
 
@@ -61,7 +61,7 @@ function UserView(props) {
   const pagination = {
     total: props.total,
     current: props.page,
-    //pageSize: 5
+    pageSize: 5
   }
 
   return (
