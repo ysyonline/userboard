@@ -1,6 +1,5 @@
 import * as userService from '../services/userService';
-
-const queryString = require('query-string');
+import {search4Obj} from '../utils/common';
 
 export default {
   namespace: 'user',
@@ -22,8 +21,7 @@ export default {
   effects: {
   	*fetch({data:{page = 1}},{call, put}){
   		const {data:{users, total}} = yield call(userService.query, {page} );
-  		console.log(users);
-  		yield put({type:'save', payload: {users, total, page:parseInt(page) } });
+  		yield put({type:'save', payload: {users, total, page } });
   	},
 
   },
@@ -31,9 +29,8 @@ export default {
   	setup({dispatch, history}){
   		history.listen(location=>{
         const {pathname, search} = location;
-  			if(pathname === '/users'){
-
-  				dispatch({type:'fetch',  data:queryString.parse(search.replace(/^[?]*(.*)$/, '$1')) });
+  			if(pathname.includes('/users') ){
+  				dispatch({type:'fetch',  data: search4Obj(search) });
   			}
   		});
   	}

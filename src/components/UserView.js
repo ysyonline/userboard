@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'dva';
 import PropTypes from 'prop-types';
-import { routerRedux } from 'dva/router';
+import { routerAction } from '../utils/common.js';
 import {Table, Pagination, Button, Popconfirm} from 'antd'; 
 import styles from './UserView.css';
 
@@ -9,10 +9,12 @@ function UserView(props) {
 
   const {dispatch} = props;
 
-  function paginationHandler (page) {
-    return dispatch(routerRedux.push({
+  function paginationHandler (page, pageSize) {
+
+    return dispatch(routerAction({
       pathname: '/users',
-      search: `?page=${page}`
+      search:{ page, pageSize },
+      query:{ page, pageSize }
     }));
   }
 
