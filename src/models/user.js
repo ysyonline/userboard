@@ -17,19 +17,23 @@ export default {
   			users: state.users.filter(item=>item.id !== payload.id)
   		});
   	},
-    edit(){
-
-    }
   },
   effects: {
   	*fetch({data:{page = 1}},{call, put}){
   		const {data:{users, total}} = yield call(userService.query, {page} );
   		yield put({type:'save', payload: {users, total, page } });
   	},
-    *edit({payload}, {call, put, select}){
+    *edit({payload}, {call, put}){
       yield call(userService.update, payload);
+      yield put({type: 'reload'});
+    },
+    *create({payload: values }, {call, put}){
+      yield call(userService.put, values );
+      yield put({type: 'reload'});
+    },
+    *reload(action, {put, select}){
       const page = yield select((state)=>state.user.page);
-      yield put({type:'fetch', data:{page} });
+      yield put({type:'fetch', data:{page}});
     }
 
   },

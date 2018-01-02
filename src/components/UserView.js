@@ -27,6 +27,11 @@ function UserView(props) {
   function handleEdit (id, values) {
     dispatch({type: 'user/edit', payload: {id, values} })
   }
+ 
+ function handleCreate (values) {
+    dispatch({type: 'user/create', payload: {values} })
+  }
+
 
   const columns = [{
     	title: 'Name',
@@ -56,6 +61,11 @@ function UserView(props) {
 
   return (
     <div>
+      <div>
+        <UserModal record={{}} onOk={(values)=>handleCreate(values) }>
+          <Button type="primary">Create</Button>
+        </UserModal>
+      </div>
       <Table 
           loading={props.loading} 
           dataSource={props.users} 

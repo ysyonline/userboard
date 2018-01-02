@@ -34,3 +34,16 @@ export function update(condition){
   const url = `/api/users?id=${id}`;
   return request(url, settings);
 }
+
+export function put(condition){
+
+  const settings = {
+    method: 'PUT',
+    headers:{
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(condition)
+  };
+  const url = `/api/users`;
+  return request(url, settings);
+}
