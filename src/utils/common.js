@@ -2,7 +2,6 @@ import queryString from 'query-string';
 import { routerRedux } from 'dva/router';
 
 
-//验证字符串是否是数字
 export function checkNumber(str) {
   var reg = /^[0-9]+.?[0-9]*$/;
   return reg.test(str);

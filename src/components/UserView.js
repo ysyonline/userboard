@@ -5,6 +5,8 @@ import { routerAction } from '../utils/common.js';
 import {Table, Pagination, Button, Popconfirm} from 'antd'; 
 import styles from './UserView.css';
 
+import UserModal from './UserModal';
+
 function UserView(props) {
 
   const {dispatch} = props;
@@ -22,19 +24,31 @@ function UserView(props) {
     dispatch({type: 'user/delete', payload: {id} })
   }
   
+  function handleEdit (id, values) {
+    dispatch({type: 'user/edit', payload: {id, values} })
+  }
+
   const columns = [{
     	title: 'Name',
     	dataIndex: 'name',
+      key: 'name',
     },{
     	title: 'Age',
     	dataIndex: 'age',
+      key: 'age',
     },{
     	title: 'Actions',
+      key:'actions',
     	render:(text, record)=>{
     		return (
-    			<Popconfirm title="Delete?" onConfirm={()=>handleDelete(record.id)}>
-    				<Button>Delete</Button>
-    			</Popconfirm>
+          <div>
+            <UserModal record={record} onOk={handleEdit.bind(null, record.id)}>
+              <Button>Edit</Button>
+            </UserModal>
+      			<Popconfirm title="Delete?" onConfirm={()=>handleDelete(record.id)}>
+      				<Button>Delete</Button>
+      			</Popconfirm>
+          </div>
     		)
     	}
   }];
