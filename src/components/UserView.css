@@ -1,3 +1,11 @@
 
 .normal {
 }
+
+.create {
+  margin-bottom: 1.5em;
+}
+
+.operation button {
+  margin-left: 0.5em;
+}

@@ -46,7 +46,7 @@ function UserView(props) {
     	title: 'Actions',
     	render:(text, record)=>{
     		return (
-          <div>
+          <div className={styles.operation}>
             <UserModal record={record} onOk={(values)=>handleEdit(record.id,values) }>
               <Button>Edit</Button>
             </UserModal>
@@ -58,10 +58,15 @@ function UserView(props) {
     	}
   }];
 
+  const pagination = {
+    total: props.total,
+    current: props.page,
+    //pageSize: 5
+  }
 
   return (
     <div>
-      <div>
+      <div className={styles.create}>
         <UserModal record={{}} onOk={(values)=>handleCreate(values) }>
           <Button type="primary">Create</Button>
         </UserModal>
@@ -71,19 +76,22 @@ function UserView(props) {
           dataSource={props.users} 
           columns={columns} 
           rowKey={record=>record.id}
-          pagination={false}/>
+          pagination={pagination}
+          onChange={paginationHandler} />
+    </div>
+  );
+}
 
+
+
+    /*
       <Pagination
           total={props.total}
           //showQuickJumper={true}
           showTotal={total => `Total ${props.total} items`}
           current={props.page}
           pageSize={5}
-          onChange={paginationHandler} />
-    </div>
-  );
-}
-
+          onChange={paginationHandler} />*/
 function mapStateToProps(state) {
   return {
     loading: state.loading.models.user,
