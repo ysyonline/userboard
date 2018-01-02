@@ -1,12 +1,13 @@
 import Bundle from '../../common/Bundle';
+import {injectModel} from '../../utils/injection';
+
+
 
 export default (props) => {
-	//注册model
-	//registerModel(require('./models/user'));
-	//动态加载
+	injectModel(require('../../models/employe/employeModel.js'));
 	return (
-	    <Bundle load={() => import('./EmployRouter')}>
-	        {(EmployRouter) => <EmployRouter {...props}/>}
+	    <Bundle load={() => import('./EmployeRouter')}>
+	        {(EmployeRouter) => <EmployeRouter {...props}/>}
 	    </Bundle>
 	)
 }

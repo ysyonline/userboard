@@ -3,7 +3,7 @@ import { Router, Route, Switch } from 'dva/router';
 import { registerApp, routerConfig as config} from './router.config';
 import NoMatch from './components/NoMatch';
 import Employe from './routes/Employe';
-
+import {injectApp} from './utils/injection';
 
 const {
 
@@ -14,8 +14,8 @@ const {
 
 
 function RouterConfig({ history, app }) {
-  
-  registerApp(app);
+
+  injectApp(app);
 
   return (
 
