@@ -24,6 +24,9 @@ function Header ({location}) {
 			<MenuItem key="/dva">
 				<a href="https://github.com/dvajs/dva" target="_blank">dva</a>
 			</MenuItem>
+			<MenuItem key="/employe">
+				<Link to="/employe"><Icon type="bars"/>Employe</Link>
+			</MenuItem>
 		</Menu>
 	);
 }

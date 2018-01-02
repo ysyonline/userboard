@@ -2,6 +2,8 @@ import React from 'react';
 import { Router, Route, Switch } from 'dva/router';
 import { registerApp, routerConfig as config} from './router.config';
 import NoMatch from './components/NoMatch';
+import Employe from './routes/Employe';
+
 
 const {
 
@@ -21,7 +23,7 @@ function RouterConfig({ history, app }) {
       <Switch>
         <Route path="/" exact component={IndexPage} />
         <Route path="/users" component={UserRouter} />
-      
+        <Route path="/employe" component={Employe} />
 
 
         //...

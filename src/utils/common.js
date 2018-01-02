@@ -23,7 +23,6 @@ export function obj4Search (query) {
 }
 
 export function routerAction(location){
-	debugger;
 	const {pathname, search, query} = location;
     const _location = {pathname};
     if(search){
