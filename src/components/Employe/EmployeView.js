@@ -68,7 +68,7 @@ function EmployeView(props) {
   return (
     <div>
       <div className={styles.create}>
-		<EmployeModal record={{}} onOk={(values)=>handleEdit(record.id,values) }>
+		    <EmployeModal record={{}} onOk={(values)=>handleCreate(values) }>
             <Button type="primary">Create</Button>
         </EmployeModal>
       </div>

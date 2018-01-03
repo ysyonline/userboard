@@ -3,11 +3,13 @@ import { connect } from 'dva';
 import EmployeView from '../../components/Employe/EmployeView';
 import MainLayout from '../../components/MainLayout/MainLayout';
 
+import styles from './EmployeRouter.css';
+
 function EmployeRouter(props) {
   
   return (
     <MainLayout location={props.location}>	
-      <div>
+      <div className={styles.normal}>
        	<EmployeView />
       </div>
      </MainLayout>
