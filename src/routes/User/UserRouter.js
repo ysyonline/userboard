@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'dva';
+import UserView from '../../components/User/UserView';
+import MainLayout from '../../components/MainLayout/MainLayout';
+
 import styles from './UserRouter.css';
-import UserView from '../components/UserView';
-import MainLayout from '../components/MainLayout/MainLayout';
 
 function UserRouter(props) {
   

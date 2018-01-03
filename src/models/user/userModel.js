@@ -1,5 +1,5 @@
-import * as userService from '../services/userService';
-import {search4Obj} from '../utils/common';
+import * as userService from '../../services/user/userService';
+import {search4Obj} from '../../utils/common';
 
 export default {
   namespace: 'user',

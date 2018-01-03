@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'dva';
 import PropTypes from 'prop-types';
-import { routerAction } from '../utils/common.js';
+import { routerAction } from '../../utils/common.js';
+import UserModal from './UserModal';
+
 import {Table, Pagination, Button, Popconfirm} from 'antd'; 
 import styles from './UserView.css';
-
-import UserModal from './UserModal';
 
 function UserView(props) {
 
@@ -82,16 +82,6 @@ function UserView(props) {
   );
 }
 
-
-
-    /*
-      <Pagination
-          total={props.total}
-          //showQuickJumper={true}
-          showTotal={total => `Total ${props.total} items`}
-          current={props.page}
-          pageSize={5}
-          onChange={paginationHandler} />*/
 function mapStateToProps(state) {
   return {
     loading: state.loading.models.user,

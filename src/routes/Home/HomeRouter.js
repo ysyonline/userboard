@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'dva';
-import styles from './IndexPage.css';
+import styles from './HomeRouter.css';
 import {Pagination} from 'antd'; 
-import MainLayout from '../components/MainLayout/MainLayout';
+import MainLayout from '../../components/MainLayout/MainLayout';
 
 
-function IndexPage({location}) {
+function HomeRouter({location}) {
   return (
   <MainLayout location={location}>
     <div className={styles.normal}>
@@ -21,4 +21,4 @@ function IndexPage({location}) {
 }
 
 
-export default connect()(IndexPage);
+export default connect()(HomeRouter);

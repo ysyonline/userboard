@@ -1,16 +1,11 @@
 import React from 'react';
 import { Router, Route, Switch } from 'dva/router';
-import { registerApp, routerConfig as config} from './router.config';
-import NoMatch from './components/NoMatch';
-import Employe from './routes/Employe';
 import {injectApp} from './utils/injection';
 
-const {
-
-	IndexPage,
-	UserRouter,
-
-} = config;
+import NoMatch from './routes/NoMatch';
+import Home from './routes/Home';
+import Employe from './routes/Employe';
+import User from './routes/User';
 
 
 function RouterConfig({ history, app }) {
@@ -21,12 +16,13 @@ function RouterConfig({ history, app }) {
 
     <Router history={history}>
       <Switch>
-        <Route path="/" exact component={IndexPage} />
-        <Route path="/users" component={UserRouter} />
+        //添加业务路由组件
+        <Route path="/" exact component={Home} />
+        <Route path="/users" component={User} />
         <Route path="/employe" component={Employe} />
 
 
-        //...
+        //默认404返回的页面
         <Route component={NoMatch}/>
       </Switch>
     </Router>
