@@ -1,0 +1,15 @@
+.loginform{
+	max-width: 300px;
+}
+
+.normal{
+	width: 400px;
+	margin: 0 auto;
+}
+
+.loginformforgot {
+  float: right;
+}
+.loginformbutton {
+  width: 100%;
+}

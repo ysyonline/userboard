@@ -15,8 +15,8 @@ function Header ({location}) {
 			<MenuItem key="/users">
 				<Link to="/users"><Icon type="bars"/>Users</Link>
 			</MenuItem>
-			<MenuItem key="/">
-				<Link to="/"><Icon type="home"/>Home</Link>
+			<MenuItem key="/home">
+				<Link to="/home"><Icon type="home"/>Home</Link>
 			</MenuItem>
 			<MenuItem key="/404">
 				<Link to="/page-you-dont-know"><Icon type="frown-circle"/>404</Link>

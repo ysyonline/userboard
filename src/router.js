@@ -1,12 +1,12 @@
 import React from 'react';
-import { Router, Route, Switch } from 'dva/router';
+import { Router, Route, Switch, Redirect } from 'dva/router';
 import {injectApp} from './utils/injection';
 
 import NoMatch from './routes/NoMatch';
 import Home from './routes/Home';
 import Employe from './routes/Employe';
 import User from './routes/User';
-
+import Login from './routes/Login';
 
 function RouterConfig({ history, app }) {
 
@@ -16,9 +16,10 @@ function RouterConfig({ history, app }) {
 
     <Router history={history}>
       <Switch>
+        <Route path="/" exact component={Login} />
+        <Redirect from='/login' to='/'/>
         //添加业务路由组件
-		
-        <Route path="/" exact component={Home} />
+        <Route path="/home" component={Home} />
         <Route path="/users" component={User} />
         <Route path="/employe" component={Employe} />
 
