@@ -15,9 +15,11 @@ function LoginForm (props) {
 		props.form.validateFields((err, values)=>{
 			if(!err){
 				console.log(values);
-				dispatch(routerAction({
+				/*dispatch(routerAction({
 					pathname: '/home'
-				}));
+				}));*/
+				dispatch({type: 'login/authenticate', payload: values });
+				
 			}
 		});
 	}
@@ -38,7 +40,7 @@ function LoginForm (props) {
 					getFieldDecorator('passWord',{
 						rules:[{required: true, message: 'Please input password'}]
 					})(
-						<Input prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)' }} />} placeholder="Password"/>
+						<Input prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password"/>
 					)
 				}
 			</FormItem>
