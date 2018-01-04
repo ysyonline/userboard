@@ -17,6 +17,7 @@ function RouterConfig({ history, app }) {
     <Router history={history}>
       <Switch>
         //添加业务路由组件
+		
         <Route path="/" exact component={Home} />
         <Route path="/users" component={User} />
         <Route path="/employe" component={Employe} />
