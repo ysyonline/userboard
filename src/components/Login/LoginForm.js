@@ -6,7 +6,7 @@ import styles from './LoginView.css';
 const FormItem = Form.Item;
 function LoginForm (props) {
 
-	const {dispatch} = props;
+	const {onSubmit} = props;
 
 	const {getFieldDecorator} = props.form;
 
@@ -18,14 +18,14 @@ function LoginForm (props) {
 				/*dispatch(routerAction({
 					pathname: '/home'
 				}));*/
-				dispatch({type: 'login/authenticate', payload: values });
+				onSubmit(values);
 				
 			}
 		});
 	}
 
 	return (
-		<Form  onSubmit={handleSubmit} className={styles.loginform}>
+		<Form  onSubmit={handleSubmit}>
 			<FormItem>
 				{
 					getFieldDecorator('userName',{

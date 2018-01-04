@@ -4,24 +4,46 @@ import {search4Obj} from '../../utils/common';
 export default {
   namespace: 'login',
   state: {
-  	userInfo: {token: null, userName: null, remember: null, passWord: null},
+  	authInfo: {token: null, errorMessage: null, errorCode: null},
+    userInfo: null,
   },
   reducers: {
-  	save(state, {payload}){
-  		const {userInfo} = payload;
+    init(state, action){
+      return {
+        authInfo: {token: null, errorMessage: null, errorCode: null},
+        userInfo: null,
+      }
+    },
+  	save(state, {payload} ){
+  		const {authInfo, userInfo} = payload;
+
   		return Object.assign({}, state, {
-  			userInfo: {...state.userInfo, ...userInfo}
+  			authInfo: {...state.authInfo, ...authInfo},
+        userInfo: {...state.userInfo, ...userInfo}
   		});
-  	}
+  	},
+    clearErrorMessage(state,{payload:{errorMessage}}){
+      return Object.assign({}, state, {
+       authInfo: {...state.authInfo, errorMessage},
+      })
+    }
   },
   effects: {
   	*authenticate({payload}, {call, put}){
   		
-  		const {data} = yield call(loginService.authenticate, payload);
-  		yield put({type: 'save', payload: {...data} });
+  		const {data:{authInfo}} = yield call(loginService.authenticate, payload);
+
+  		yield put({type: 'save', payload: {authInfo, userInfo: payload} });
   	}
   },
   subscriptions: {
-  	
+  	setup({dispatch, history}){
+      history.listen(location=>{
+        const {pathname, search} = location;
+        if(pathname.includes('/login') || pathname === '/' ){
+          dispatch({type:'init'});
+        }
+      });
+    }
   },
 };

@@ -1,12 +1,11 @@
-.loginform{
-	max-width: 300px;
-}
 
 .normal{
 	width: 400px;
 	margin: 0 auto;
 }
-
+.logintable{
+	max-width: 300px;
+}
 .loginformforgot {
   float: right;
 }
