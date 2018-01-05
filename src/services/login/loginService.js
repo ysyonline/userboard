@@ -18,3 +18,15 @@ export function authenticate(condition) {
   return request(url, settings);
 
 }
+
+export function invalidate(condition){
+	const settings = {
+		method: 'POST',
+		headers:{
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(condition)
+	};
+	const url = `/api/invalidate`;
+	return request(url, settings);
+}

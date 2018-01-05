@@ -1,47 +1,61 @@
 import * as loginService from '../../services/login/loginService';
-import {search4Obj} from '../../utils/common';
+import {routerAction} from '../../utils/common';
 
 export default {
   namespace: 'login',
   state: {
-  	authInfo: {token: null, errorMessage: null, errorCode: null},
-    userInfo: null,
+  	authInfo: {errorMessage: null, errorCode: null},
   },
   reducers: {
     init(state, action){
       return {
-        authInfo: {token: null, errorMessage: null, errorCode: null},
-        userInfo: null,
+        authInfo: {errorMessage: null, errorCode: null},
       }
     },
+  
   	save(state, {payload} ){
-  		const {authInfo, userInfo} = payload;
+  		const {authInfo} = payload;
 
   		return Object.assign({}, state, {
-  			authInfo: {...state.authInfo, ...authInfo},
-        userInfo: {...state.userInfo, ...userInfo}
+  			authInfo: { errorMessage: authInfo.errorMessage, errorCode: authInfo.errorCode }
   		});
   	},
-    clearErrorMessage(state,{payload:{errorMessage}}){
-      return Object.assign({}, state, {
-       authInfo: {...state.authInfo, errorMessage},
-      })
-    }
   },
   effects: {
   	*authenticate({payload}, {call, put}){
-  		
-  		const {data:{authInfo}} = yield call(loginService.authenticate, payload);
 
-  		yield put({type: 'save', payload: {authInfo, userInfo: payload} });
-  	}
+  		const {data:{authInfo}} = yield call(loginService.authenticate, payload);
+      const {token} = authInfo;
+
+      if(token && token.length){
+        localStorage.setItem('token', token);
+        localStorage.setItem('userName', payload.userName);
+        localStorage.setItem('islogin', true);
+      }
+  		yield put({type: 'save', payload: {authInfo} });
+  	},
+
+    *invalidate({payload}, {call, put}){
+      const token = localStorage.getItem('token');
+     
+      const {data:{operation}} = yield call(loginService.invalidate, {token});
+      const {resultCode, errors:[]} = operation;
+      if(resultCode === 'ok'){
+        localStorage.removeItem('token');
+        localStorage.removeItem('userName');
+        localStorage.setItem('islogin', false);
+        yield put(routerAction({pathname: '/'}));
+      }
+    }
   },
   subscriptions: {
   	setup({dispatch, history}){
       history.listen(location=>{
         const {pathname, search} = location;
         if(pathname.includes('/login') || pathname === '/' ){
-          dispatch({type:'init'});
+         
+            dispatch({type:'init'});
+          
         }
       });
     }

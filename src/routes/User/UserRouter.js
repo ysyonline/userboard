@@ -8,7 +8,7 @@ import styles from './UserRouter.css';
 function UserRouter(props) {
   
   return (
-    <MainLayout location={props.location}>	
+    <MainLayout location={props.location} dispatch={props.dispatch}>	
       <div className={styles.normal}>
         <UserView/>
       </div>

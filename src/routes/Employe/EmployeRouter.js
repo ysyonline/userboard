@@ -6,9 +6,8 @@ import MainLayout from '../../components/MainLayout/MainLayout';
 import styles from './EmployeRouter.css';
 
 function EmployeRouter(props) {
-  
   return (
-    <MainLayout location={props.location}>	
+    <MainLayout location={props.location} dispatch={props.dispatch}>	
       <div className={styles.normal}>
        	<EmployeView />
       </div>

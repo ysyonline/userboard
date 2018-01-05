@@ -5,9 +5,9 @@ import {Pagination} from 'antd';
 import MainLayout from '../../components/MainLayout/MainLayout';
 
 
-function HomeRouter({location}) {
+function HomeRouter({location, dispatch,history}) {
   return (
-  <MainLayout location={location}>
+  <MainLayout location={location}  dispatch={dispatch} history={history}>
     <div className={styles.normal}>
       <h1 className={styles.title}>Yay! Welcome to dva!</h1>
       <div className={styles.welcome} />

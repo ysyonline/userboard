@@ -2,13 +2,14 @@ import React from 'react';
 import Header from './Header';
 import styles from './MainLayout.css';
 
-function MainLayout ({children, location}) {
+function MainLayout (props) {
+
 	return (
 		<div className={styles.normal}>
-			<Header location={location}/>
+			<Header {...props}/>
 			<div className={styles.content}>
 				<div className={styles.main}>
-					{children}
+					{props.children}
 				</div>
 			</div>
 		</div>

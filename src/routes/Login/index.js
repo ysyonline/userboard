@@ -1,13 +1,11 @@
 import Bundle from '../../common/Bundle';
 import {injectModel} from '../../utils/injection';
-
+import LoginRouter from './LoginRouter';
 
 
 export default (props) => {
-	injectModel(require('../../models/login/loginModel.js'));
+	
 	return (
-	    <Bundle load={() => import('./LoginRouter')}>
-	        {(LoginRouter) => <LoginRouter {...props}/>}
-	    </Bundle>
+	   <LoginRouter {...props}/>
 	)
 }

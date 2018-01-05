@@ -15,27 +15,45 @@ class LoginView extends Component {
 		super(props);
 		this.onClose = this.onClose.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
-	}
-
-	componentWillUpdate(props){
-		const {dispatch, authInfo: {errorCode}} = props;
-		if(errorCode === "" ){
-			dispatch(routerAction({
-				pathname: "/home"
-			}) );
+		this.state = {
+			messageVisiable: false
 		}
 	}
 
+	componentWillMount(){
+		const isLogin = this.checkIsLogin();
+		if(isLogin) this.redirect('/home');
+	}
+	componentWillReceiveProps(props){
+		const {loading, authInfo: {errorCode}} = props;
+
+		if (!loading && errorCode) {
+			this.errorMessage.show();
+		};
+		if(errorCode === "" ){
+			this.redirect('/home');
+		}
+	}
+
+	redirect(pathname){
+		this.props.dispatch(routerAction({
+				pathname: pathname
+		}));
+	}
+
+	checkIsLogin(){
+		const token = localStorage.getItem('token');
+		return token && token.length;
+	}
+
 	onClose(e){
-		console.log(e, 'i was closed');
-		this.props.dispatch({type:"login/clearErrorMessage", payload:{errorMessage: ''} });
+		this.errorMessage.hide();
 	}
 
 	handleSubmit(values){
 
 		this.props.dispatch({type: 'login/authenticate', payload: values });
 	}
-
 
 	render(){
 		const {loading, authInfo: {errorMessage, errorCode}} = this.props;
@@ -50,7 +68,7 @@ class LoginView extends Component {
 				>
 					<div className={styles.logintable}>
 						{
-							errorMessage && errorMessage.length? 
+							this.state.messageVisiable? 
 							<Alert message={errorMessage} type="error" closable onClose={this.onClose}/> :
 							null
 						}
@@ -61,6 +79,12 @@ class LoginView extends Component {
 		);
 	}
 	
+
+	errorMessage = {
+		show: ()=>this.setState({messageVisiable: true}),
+		hide: ()=>this.setState({messageVisiable: false})
+	}
+
 }
 
 function mapStateToProps(state) {

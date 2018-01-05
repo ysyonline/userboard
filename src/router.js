@@ -19,7 +19,9 @@ function RouterConfig({ history, app }) {
         <Route path="/" exact component={Login} />
         <Redirect from='/login' to='/'/>
         //添加业务路由组件
-        <Route path="/home" component={Home} />
+        <Route path="/home" component={Home} onBefore={()=>{
+          console.log("aaaaaaaaaa");
+        }}/>
         <Route path="/users" component={User} />
         <Route path="/employe" component={Employe} />
 

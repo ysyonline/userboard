@@ -1,10 +1,19 @@
 import React from 'react';
-import {Menu, Icon} from 'antd';
+import {Menu, Icon, Avatar} from 'antd';
 import {Link} from 'dva/router';
 import PropTypes from 'prop-types';
 
-function Header ({location}) {
+//import {routerAction} from '../../utils/common'
+//import history from '../../utils/history'
+
+
+function Header ({location, dispatch, history}) {
 	const MenuItem = Menu.Item;
+
+	function invalidate(e){
+	     e.preventDefault();
+		 dispatch({type:'login/invalidate'});
+	}
 
 	return(
 		<Menu
@@ -26,6 +35,13 @@ function Header ({location}) {
 			</MenuItem>
 			<MenuItem key="/employe">
 				<Link to="/employe"><Icon type="bars"/>Employe</Link>
+			</MenuItem>
+			
+			<MenuItem key="/logout"  style={{float:'right'}}>
+				<a href="" onClick={invalidate}>log out</a>
+			</MenuItem>
+			<MenuItem key="/avatar" style={{float:'right'}}>
+				<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" style={{height:'28px', width:'28px', top:'9px'}}/>
 			</MenuItem>
 		</Menu>
 	);
